@@ -1,0 +1,23 @@
+{
+  "name": "bp_tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weeb-kun/bp-tracker.git"
+  },
+  "author": "weebkun",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/weeb-kun/bp-tracker/issues"
+  },
+  "homepage": "https://github.com/weeb-kun/bp-tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^6.6.2"
+  }
+}
