@@ -69,7 +69,7 @@ app.route("/record")
         })
     });
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
     process.env.NODE_ENV = "production";
     console.log("server running on port 5000");
 });
