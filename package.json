@@ -1,6 +1,9 @@
 {
   "name": "bp_tracker",
   "version": "1.0.0",
+  "engines": {
+    "node": "v11.11.0"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -17,6 +20,7 @@
   },
   "homepage": "https://github.com/weeb-kun/bp-tracker#readme",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "mysql2": "^2.2.5",

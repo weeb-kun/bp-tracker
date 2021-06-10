@@ -6,14 +6,15 @@
     }
 </style>
 <h1 style="text-align:center">Home</h1>
-<div class="well">
+<a class="btn btn-primary" href="/record">Add BP Reading</a>
+<div>
     {{#each reading}}
-        <div class="col text-center well">
-            <p>Date: {{date}}</p>
+        <div class="col text-center card">
+            <p>Date: {{formatDate date}}</p>
             <p>Time: {{time}}</p>
-            <p>Systolic: {{sys}}
-            <p>Diastolic: {{dia}}</p>
-            <p>Pulse Rate: {{pr}}</p>
+            <p>Systolic: {{systolic}}
+            <p>Diastolic: {{diastolic}}</p>
+            <p>Pulse Rate: {{pulse_rate}}</p>
         </div>
     {{/each}}
 </div>
