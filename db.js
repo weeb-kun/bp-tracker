@@ -1,7 +1,7 @@
 const {Sequelize} = require("sequelize");
 
-module.exports = new Sequelize("bp", "bp", process.env.bp, {
-    host: "localhost",
+module.exports = new Sequelize(process.env.CLEARDB_DATABASE_URL, {
+    //host: "eu-cdbr-west-01.cleardb.com",
     dialect: "mysql",
     define: {
         timestamps: false,
