@@ -18,6 +18,8 @@
   "homepage": "https://github.com/weeb-kun/bp-tracker#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
   }
 }

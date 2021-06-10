@@ -1,0 +1,19 @@
+<style>
+    .well {
+        border-radius: 5px;
+        border: 10px;
+        border-color: black;
+    }
+</style>
+<h1 style="text-align:center">Home</h1>
+<div class="well">
+    {{#each reading}}
+        <div class="col text-center well">
+            <p>Date: {{date}}</p>
+            <p>Time: {{time}}</p>
+            <p>Systolic: {{sys}}
+            <p>Diastolic: {{dia}}</p>
+            <p>Pulse Rate: {{pr}}</p>
+        </div>
+    {{/each}}
+</div>
