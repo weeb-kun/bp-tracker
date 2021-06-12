@@ -5,6 +5,7 @@ const handlebars = require("handlebars");
 const db = require("./db"),
 Reading = require("./models/Reading");
 const bcrypt = require("bcryptjs");
+const session = require("express-session");
 const app = express();
 
 app.engine("handlebars", exphbs({
@@ -38,6 +39,11 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.json());
+app.use(session({
+    key: "bp",
+    secret: "bp",
+    saveUninitialized: false
+}));
 
 // authenticate to db and sync
 db.authenticate().then(() => db.sync({alter: true})).catch(err => console.error(err));
