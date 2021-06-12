@@ -4,6 +4,7 @@ const {allowInsecurePrototypeAccess} = require("@handlebars/allow-prototype-acce
 const handlebars = require("handlebars");
 const db = require("./db"),
 Reading = require("./models/Reading");
+const bcrypt = require("bcryptjs");
 const app = express();
 
 app.engine("handlebars", exphbs({
@@ -41,11 +42,17 @@ app.use(express.json());
 // authenticate to db and sync
 db.authenticate().then(() => db.sync({alter: true})).catch(err => console.error(err));
 
+app.use((req, res, next) => {
+    if(req.session.loggedIn) next();
+    else res.redirect("/login");
+});
+
 app.get("/", (req, res) => {
     Reading.findAll().then(readings => {
         res.render("home", {
             title: "home",
-            reading: readings
+            reading: readings,
+            loggedIn: req.session.loggedIn
         });
     });
 });
@@ -53,7 +60,8 @@ app.get("/", (req, res) => {
 app.route("/record")
     .get((req, res) => {
         res.render("add", {
-            title: "record reading"
+            title: "record reading",
+            loggedIn: req.session.loggedIn
         });
     })
     .post((req, res) => {
@@ -68,6 +76,21 @@ app.route("/record")
             res.redirect("/");
         })
     });
+
+app.route("/login")
+.get((req, res) => res.render("login", {title: "login", loggedIn: req.session.loggedIn}))
+.post((req, res) => {
+    bcrypt.compare(req.body.password, process.env.password)
+    .then(match => {
+        if(match) {
+            req.session.loggedIn = true;
+            req.session.username = "weeb";
+            res.redirect("/");
+        } else {
+            res.redirect("/login");
+        }
+    });
+});
 
 app.listen(process.env.PORT, () => {
     process.env.NODE_ENV = "production";
