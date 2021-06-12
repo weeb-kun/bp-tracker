@@ -48,12 +48,14 @@ app.use(session({
 // authenticate to db and sync
 db.authenticate().then(() => db.sync({alter: true})).catch(err => console.error(err));
 
-app.use((req, res, next) => {
+app.use("/bp", (req, res, next) => {
     if(req.session.loggedIn) next();
     else res.redirect("/login");
 });
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => res.redirect("/bp"));
+
+app.get("/bp", (req, res) => {
     Reading.findAll().then(readings => {
         res.render("home", {
             title: "home",
@@ -63,7 +65,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.route("/record")
+app.route("/bp/record")
     .get((req, res) => {
         res.render("add", {
             title: "record reading",
@@ -96,6 +98,13 @@ app.route("/login")
             res.redirect("/login");
         }
     });
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy((err => {
+        if(err) res.send(err);
+        else res.redirect("/");
+    }));
 });
 
 app.listen(process.env.PORT, () => {
