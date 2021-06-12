@@ -68,7 +68,7 @@ app.route("/record")
         var date = new Date();
         Reading.create({
             date: req.body.date ? req.body.date : `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-            time: req.body.time ? req.body.time : "00:00",
+            time: req.body.time ? req.body.time : `${date.getHours()}:${date.getMinutes()}`,
             systolic: req.body.sys,
             diastolic: req.body.dia,
             pulse_rate: req.body.pr
