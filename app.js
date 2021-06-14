@@ -107,7 +107,7 @@ app.get("/logout", (req, res) => {
     }));
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT | 5000, () => {
     process.env.NODE_ENV = "production";
-    console.log("server running on port 5000");
+    console.log(`server running on port ${process.env.PORT}`);
 });
