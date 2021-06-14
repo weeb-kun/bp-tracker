@@ -75,8 +75,8 @@ app.route("/bp/record")
     .post((req, res) => {
         var date = new Date();
         Reading.create({
-            date: req.body.date ? req.body.date : `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-            time: req.body.time ? req.body.time : `${date.getHours()}:${date.getMinutes()}`,
+            date: req.body.date != "" ? req.body.date : `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
+            time: req.body.time != "" ? req.body.time : `${date.getHours()}:${date.getMinutes()}`,
             systolic: req.body.sys,
             diastolic: req.body.dia,
             pulse_rate: req.body.pr
